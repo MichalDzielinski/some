@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load format_duration %}
+ 
+{% block title %}task summary{% endblock title %}
+ 
+{% block content %}
+
+    <div class="mt-5">
+        <h3>{{task.name}}</h3>
+    </div>
+    {% if qs %}
+        <table class="table table-dark mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Total Time</th>
+                    <th scope="col">Total Work Time</th>
+                    <th scope="col">Total Non-Work Time</th>
+                    <th scope="col">Log Count</th>
+                    <th scope="col">Shortest Log</th>
+                    <th scope="col">Longest Log</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in qs %}
+                    <tr>
+                        <td>{{obj.total_time|default:'0'|format_duration}}</td>
+                        <td>{{obj.total_work_time|default:'0'|format_duration}}</td>
+                        <td>{{obj.total_none_work_time|default:'0'|format_duration}}</td>
+                        <td>{{obj.log_count|default:'0'|format_duration}}</td>
+                        <td>{{obj.shortest_log|default:'0'|format_duration}}</td>
+                        <td>{{obj.longest_log|default:'0'|format_duration}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No task summaries available</p>
+    {% endif %}
+ 
+{% endblock content %}

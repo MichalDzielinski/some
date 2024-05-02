@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+update timezone
+{% endblock title %}
+
+
+{% block content %}
+
+{% if messages %}
+  {% for msg in messages %}
+    {% if msg.tags == 'info' %}
+      <div class="alert alert-primary" role="alert">
+        {{msg}}
+      </div>
+    {% endif %}
+  
+  {% endfor %}
+
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form }}
+
+    <button type="submit" class="btn btn-warning mt-2">save</button>
+</form>
+
+{% endblock content %}

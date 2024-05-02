@@ -1,0 +1,9 @@
+{% load static %}
+
+<nav class="navbar bg-light text-dark shadow container-xl mt-3 mb-5 p-3 px-5 rounded-pill">
+    <div class="d-flex justify-content-center w-100">
+        <a href="{% url 'tasks:main' %}">
+            <img src="{% static 'logo.png' %}" style="height: 40px;" alt="timey logo" >
+        </a>
+    </div>
+</nav>
